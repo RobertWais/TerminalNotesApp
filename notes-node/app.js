@@ -16,7 +16,16 @@ console.log("Command: ",command);
 //prints entire object
 // console.log("Yargs", argv);
 if (command === "add"){
-    notes.addNote(argv.title,argv.body);
+    var note = notes.addNote(argv.title,argv.body);
+
+    if (note){
+        console.log(`Message Saved ${note.title}`)
+
+    }else{
+        console.log("Title already exists")
+    }
+
+
 }else if(command === "list"){
     notes.getAll();
 }else if(command === "read"){
