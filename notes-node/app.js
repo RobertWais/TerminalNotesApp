@@ -27,11 +27,25 @@ if (command === "add"){
 
 
 }else if(command === "list"){
-    notes.getAll();
+    var allNotes = notes.getAll();
+
+    for(let i = 0; i < allNotes.length; i++){
+        console.log("Title: ", allNotes[i].title);
+        console.log("Body: ",allNotes[i].body);
+    }
 }else if(command === "read"){
-    notes.getNote(argv.title)
+    var note = notes.getNote(argv.title);
+
+    if (note[0]){
+        console.log("Title: ", note[0].title);
+        console.log("Body: ", note[0].body);
+    }else{
+        console.log("Note does not exist")
+    }
 }else if (command === "remove"){
-    notes.removeNote(argv.title)
+    var noteRemoved = notes.removeNote(argv.title);
+    var message = noteRemoved ? 'Note was removed' : 'Note did not exist'
+    console.log(message)
 }else{
     console.log("Command not recognized...")
 }
